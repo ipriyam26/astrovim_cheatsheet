@@ -1,81 +1,422 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 ---
-
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
-</Layout>
+  
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+
+:root {
+    --background: #282a36;
+    --current-line: #44475a;
+    --foreground: #f8f8f2;
+    --comment: #6272a4;
+    --cyan: #8be9fd;
+    --green: #50fa7b;
+    --orange: #ffb86c;
+    --pink: #ff79c6;
+    --purple: #bd93f9;
+    --red: #ff5555;
+    --yellow: #f1fa8c;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2em;
+  }
+
+  th, td {
+    border: 1px solid var(--current-line);
+    padding: 0.5em;
+  }
+
+  th {
+    background-color: var(--current-line);
+    color: var(--foreground);
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--current-line);
+  }
+
+h2,a {
+    color: var(--cyan);
+  }
+
 </style>
+
+
+<head>
+  <title>Astro Vim Config Cheat Sheet | Keybinds and Commands</title>
+  <meta name="description" content="A comprehensive cheat sheet for Astro Vim Config. This guide includes keybinds and commands for general use, file navigation, buffer navigation, splits, neo-tree, git, language integration, folding, and terminal.">
+  <meta name="keywords" content="Astro Vim Config, Vim Cheat Sheet, Astro Vim Keybinds, Astro Vim Commands, Astro Vim Guide">
+  <meta name="robots" content="index, follow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+  
+<h1>Astro Vim Config Cheat Sheet</h1>
+<h2>
+<a  href="https://astronvim.com/"> Astro Vim Docs</a>
+</h2>
+
+<div>
+<h2>General</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;leader&gt; (Space by default)</td>
+      <td>Display all mappings that can follow</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;n</td>
+      <td>Create a new empty buffer</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;c</td>
+      <td>Close the current buffer</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;/</td>
+      <td>Comment/Uncomment the current line</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;Ss</td>
+      <td>Save a session</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;S.</td>
+      <td>Load a session</td>
+    </tr>
+    <tr>
+      <td>jj or jk</td>
+      <td>Replacement for pressing escape in insert mode</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div class="grid">
+  
+
+<div>
+  
+<h2>File Navigation</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;leader&gt;ff</td>
+      <td>Bring up Telescope (fuzzy finder plugin)</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;fo</td>
+      <td>Search for recent files</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;fw</td>
+      <td>Search for text across all files in the project</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;fc</td>
+      <td>Search for the word currently under the cursor</td>
+    </tr>
+    <tr>
+      <td>Ctrl+j and Ctrl+k</td>
+      <td>Scroll down/up in the results list</td>
+    </tr>
+    <tr>
+      <td>Ctrl+d and Ctrl+u</td>
+      <td>Scroll in the file preview</td>
+    </tr>
+    <tr>
+      <td>Ctrl+p and Ctrl+n</td>
+      <td>See what you last searched for</td>
+    </tr>
+    <tr>
+      <td>h, l, j, k</td>
+      <td>Navigate the input box/results in normal mode</td>
+    </tr>
+    <tr>
+      <td>?</td>
+      <td>See a list of all mappings available inside Telescope</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div>
+  
+<h2>Language Integration</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ctrl+space</td>
+      <td>Manually bring up completions</td>
+    </tr>
+    <tr>
+      <td>Ctrl+e</td>
+      <td>Close completions</td>
+    </tr>
+    <tr>
+      <td>K</td>
+      <td>Preview the type of the symbol under the cursor</td>
+    </tr>
+    <tr>
+      <td>gT</td>
+      <td>Go to its type definition</td>
+    </tr>
+    <tr>
+      <td>gI</td>
+      <td>Go to its implementation</td>
+    </tr>
+    <tr>
+      <td>gd</td>
+      <td>Jump to a symbol’s definition</td>
+    </tr>
+    <tr>
+      <td>gr</td>
+      <td>See its references across the project</td>
+    </tr>
+    <tr>
+      <td>gl</td>
+      <td>See the full error message</td>
+    </tr>
+    <tr>
+      <td>[]d</td>
+      <td>Navigate between the errors in the buffer</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;lr</td>
+      <td>Rename symbols</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;lf</td>
+      <td>Format the buffer</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;la</td>
+      <td>Bring up code actions</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div>
+  
+<h2>Splits</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;leader&gt;\\</td>
+      <td>Create a horizontal split</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;|</td>
+      <td>Create a vertical split</td>
+    </tr>
+    <tr>
+      <td>Ctrl+hjkl</td>
+      <td>Navigate between splits</td>
+    </tr>
+    <tr>
+      <td>Ctrl+arrow keys</td>
+      <td>Resize splits</td>
+    </tr>
+    <tr>
+      <td>Ctrl+q</td>
+      <td>Close splits</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div>
+  
+<h2>Neo-tree</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;leader&gt;e</td>
+      <td>Open neo-tree</td>
+    </tr>
+    <tr>
+      <td>H</td>
+      <td>Toggle hidden files</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>Create a new file or directory</td>
+    </tr>
+    <tr>
+      <td>r</td>
+      <td>Rename</td>
+    </tr>
+    <tr>
+      <td>d</td>
+      <td>Delete</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div>
+  
+<h2>Git</h2>
+
+<table>
+  <thead>
+<tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;leader&gt;g</td>
+      <td>See all the Git mappings</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;gg</td>
+      <td>Launch “lazygit”</td>
+    </tr>
+    <tr>
+      <td>&lt;leader&gt;gt</td>
+      <td>See the Git status of all changed files within Telescope</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div>
+  
+
+<h2>Buffer Navigation</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>]b</td>
+      <td>Go to the buffer to the right</td>
+    </tr>
+    <tr>
+      <td>[b</td>
+      <td>Go to the buffer to the left</td>
+    </tr>
+    <tr>
+      <td>&gt;b</td>
+      <td>Move the current buffer tab to the right</td>
+    </tr>
+    <tr>
+      <td>&lt;b</td>
+      <td>Move the current buffer tab to the left</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div>
+  
+<h2>Folding</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>za</td>
+      <td>Toggle the current fold</td>
+    </tr>
+    <tr>
+      <td>zm</td>
+      <td>More folding for the entire buffer</td>
+    </tr>
+    <tr>
+      <td>zr</td>
+      <td>Reduce all folds</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div>
+  
+<h2>Terminal</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keybind</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>F7</td>
+      <td>Toggle the floating terminal</td>
+    </tr>
+  </tbody</table>
+</div>
+
+</div>
